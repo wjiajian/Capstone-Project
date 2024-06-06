@@ -1,0 +1,21 @@
+
+train:
+python train.py --epochs 100 --cfg models/yolov5s.yaml --hyp data/hyps/hyp.scratch-low.yaml --data data/VOC.yaml --weight weights/yolov5s.pt --workers 4 --batch 24
+python train.py --epochs 100 --cfg models/yolov5s_SimAM.yaml --hyp data/hyps/hyp.scratch-low.yaml --data data/VOC.yaml --weight weights/yolov5s.pt --workers 4 --batch 24
+python train.py --epochs 100 --cfg models/yolov5s_SimAM.yaml --hyp data/hyps/hyp.scratch-low.yaml --data data/VOC.yaml --weight runs/train/exp/weights/best.pt --workers 4 --batch 16
+
+                    python train.py --epochs 200 --cfg models/yolov5s.yaml --hyp data/hyps/hyp.scratch-low.yaml --data data/VOC.yaml --weight weights/yolov5s.pt --workers 4 --batch 16
+CrowdHuman          python train.py --epochs 200 --cfg models/yolov5s.yaml --hyp data/hyps/hyp.scratch-low.yaml --data data/CrowdHuman.yaml --weight weights/yolov5s.pt --workers 4 --batch 16
+SE&CrowdHuman       python train.py --epochs 200 --cfg models/yolov5s_SE.yaml --hyp data/hyps/hyp.scratch-low.yaml --data data/CrowdHuman.yaml --weight weights/yolov5s.pt --workers 4 --batch 16
+SimAM&CrowdHuman    python train.py --epochs 200 --cfg models/yolov5s_SimAM.yaml --hyp data/hyps/hyp.scratch-low.yaml --data data/CrowdHuman.yaml --weight weights/yolov5s.pt --workers 4 --batch 16
+SKA%CrowdHuman      python train.py --epochs 200 --cfg models/yolov5s_SKA.yaml --hyp data/hyps/hyp.scratch-low.yaml --data data/CrowdHuman.yaml --weight weights/yolov5s.pt --workers 4 --batch 16
+
+val:
+python detect.py --data data/coco.yaml --weights weights/yolov5s.pt --source C:/Users/jiajian233/Desktop/test1.png --classes 0
+python detect.py --data data/CrowdHuman.yaml --weights runs/train/exp_CrowdHuman/weights/best.pt --source C:/Users/jiajian233/Desktop/test1.png
+python detect.py --data data/CrowdHuman.yaml --weights runs/train/exp_SE,CrowdHuman/weights/best.pt --source C:/Users/jiajian233/Desktop/test1.png
+python detect.py --data data/CrowdHuman.yaml --weights runs/train/exp_SimAM,CrowdHuman/weights/best.pt --source C:/Users/jiajian233/Desktop/test1.png
+python detect.py --data data/CrowdHuman.yaml --weights runs/train/exp_SKA,CrowdHuman/weights/best.pt --source C:/Users/jiajian233/Desktop/test1.png
+
+ui.ui -> ui.py
+pyuic5 -x UI.ui -o UI.py
